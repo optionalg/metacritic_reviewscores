@@ -1,9 +1,7 @@
-#!/usr/bin/python
-
 from datetime import datetime
-from bs4 import BeautifulSoup
+from BeautifulSoup import BeautifulSoup
 from pprint import pprint
-import urllib
+import urllib2
 import sqlite3
 import sys
 import re
@@ -245,12 +243,12 @@ def get_details_url(id):
     
 def get_html(url):
     try:
-        request = urllib.Request(url)
+        request = urllib2.Request(url)
         request.add_header("User-Agent", "Mozilla/5.001 (windows; U; NT4.0; en-US; rv:1.0) Gecko/25250101")
-        html = urllib.urlopen(request).read()
+        html = urllib2.urlopen(request).read()
         return html
     except:
-        print ("Error accessing:", url)
+        print "Error accessing:", url
         return None 
     
 def main():
@@ -262,9 +260,9 @@ def main():
         return
     for result in results:
         pprint(vars(result))
-        print ("")
+        print ""
         pprint(vars(Metacritic.get_info(result.id)))
-        print ("")
+        print ""
 
 if __name__ == "__main__":
     main()
